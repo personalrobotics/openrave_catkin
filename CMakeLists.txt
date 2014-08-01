@@ -6,7 +6,7 @@ find_package(openrave REQUIRED)
 
 catkin_package(
     DEPENDS openrave
-    CFG_EXTRAS 
+    CFG_EXTRAS "${PROJECT_NAME}-extras.cmake"
 )
 
 set(BASE_DIRECTORY "openrave-${OpenRAVE_LIBRARY_SUFFIX}")
