@@ -6,6 +6,13 @@ set(OpenRAVE_DATA_DIR "data")
 set(OpenRAVE_PLUGINS_DIR "plugins")
 set(OpenRAVE_DATABASES_DIR "databases")
 
+# The target property INCLUDE_DIRECTORIES is only supported in CMake 2.8.8 and
+# above. Ubuntu 12.04 ships with CMake 2.8.7, so we'll fall back on a global
+# include_directories statement in this case.
+if ("${CMAKE_VERSION}" VERSION_LESS "2.8.8")
+    include_directories(${OpenRAVE_INCLUDE_DIRS})
+endif ()
+
 macro (openrave_plugin target_name)
     add_library("${target_name}" SHARED ${ARGN})
     target_link_libraries("${target_name}" ${OpenRAVE_LIBRARIES})
@@ -13,9 +20,9 @@ macro (openrave_plugin target_name)
         PREFIX ""
         COMPILE_FLAGS "${OpenRAVE_CXX_FLAGS}"
         LINK_FLAGS "${OpenRAVE_LINK_FLAGS}"
-        LIBRARY_OUTPUT_DIR "${OpenRAVE_DEVEL_DIR}/${OpenRAVE_PLUGINS_DIR}"
+        LIBRARY_OUTPUT_DIRECTORY "${OpenRAVE_DEVEL_DIR}/${OpenRAVE_PLUGINS_DIR}"
+        INCLUDE_DIRECTORIES "${OpenRAVE_INCLUDE_DIRS}"
     )
-    message(STATUS "Writing plugin to ${OpenRAVE_DEVEL_DIR}/${OpenRAVE_PLUGINS_DIR}")
 
     install(TARGETS "${target_name}"
         ARCHIVE DESTINATION "${OpenRAVE_INSTALL_DIR}/${OpenRAVE_PLUGINS_DIR}"
