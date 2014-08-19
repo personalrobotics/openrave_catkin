@@ -43,9 +43,9 @@ Installation Paths
 ------------------
 We define the following locations for OpenRAVE assets:
 
- - `OPENRAVE_DATA` share/openrave-MAJOR.MINOR/data`
- - `OPENRAVE_DATABASES` share/openrave-MAJOR.MINOR/databases`
- - `OPENRAVE_PLUGINS` share/openrave-MAJOR.MINOR/plugins`
+ - `OPENRAVE_DATA`: `share/openrave-MAJOR.MINOR/data`
+ - `OPENRAVE_DATABASES`: `share/openrave-MAJOR.MINOR/databases`
+ - `OPENRAVE_PLUGINS`: `share/openrave-MAJOR.MINOR/plugins`
 
 In all cases, these paths are relative to the root of your of your current
 Catkin devel or install space. This naming convention will was selected to
@@ -57,4 +57,4 @@ Multiple Versions of OpenRAVE
 This package does not support switching between OpenRAVE versions because this
 use-case is not elegantly supported by Catkin. We would appreciate any thoughts
 on the matter in the form of an issue. However, note that installation paths
-used for OpenRAVE artifacts are namespaced by version.  number.
+used for OpenRAVE artifacts are namespaced by version number.
