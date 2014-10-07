@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>openrave_catkin</name>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <description>Utilities for building OpenRAVE plugins in a Catkin workspace.</description>
   <maintainer email="mkoval@cs.cmu.edu">Michael Koval</maintainer>
   <author email="mkoval@cs.cmu.edu">Michael Koval</author>
