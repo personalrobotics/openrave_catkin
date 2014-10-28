@@ -20,16 +20,8 @@ function (openrave_plugin target_name)
     # The target property INCLUDE_DIRECTORIES is only supported in CMake 2.8.8 and
     # above. Ubuntu 12.04 ships with CMake 2.8.7, so we'll fall back on a global
     # include_directories statement in this case.
-    if ("${CMAKE_VERSION}" VERSION_LESS "2.8.8")
+    if ("${CMAKE_VERSION}" VERSION_LESS "2.8.11")
         include_directories(${OpenRAVE_INCLUDE_DIRS})
-    # In this intermediate version, we need to set the include directories as a 
-    # target property of the plugin target.  We do this by concatenating the 
-    # OpenRAVE include directories to the existing include directories list.
-    elseif ("${CMAKE_VERSION}" VERSION_LESS "2.8.11")
-        get_property(current_include_dirs DIRECTORY PROPERTY INCLUDE_DIRECTORIES)
-        set_target_properties("${target_name}" PROPERTIES
-            INCLUDE_DIRECTORIES "${current_include_dirs} ${OpenRAVE_INCLUDE_DIRS}"
-        )
     # The target_include_directories() command was introduced in CMake 2.8.11 and
     # is the preferred method of creating a scoped include directory in future
     # versions.
