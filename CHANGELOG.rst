@@ -2,8 +2,8 @@
 Changelog for package openrave_catkin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.1 (2014-12-12)
+------------------
 * Fixed cmake problem in openrave_catkin for 14.04.
 * Removed check for 2.8.7 < cmake < 2.8.11.
 * Contributors: Christopher Dellin, Pras Velagapudi
