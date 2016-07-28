@@ -7,9 +7,10 @@ set(OpenRAVE_PLUGINS_DIR "plugins")
 set(OpenRAVE_DATABASES_DIR "databases")
 
 function (openrave_plugin target_name)
+    link_directories(${OpenRAVE_LIBRARY_DIRS})
+
     add_library("${target_name}" SHARED ${ARGN})
     target_link_libraries("${target_name}" ${OpenRAVE_LIBRARIES})
-    message(STATUS ${INCLUDE_DIRECTORIES})
     set_target_properties("${target_name}" PROPERTIES
         PREFIX ""
         COMPILE_FLAGS "${OpenRAVE_CXX_FLAGS}"
@@ -21,12 +22,14 @@ function (openrave_plugin target_name)
     # above. Ubuntu 12.04 ships with CMake 2.8.7, so we'll fall back on a global
     # include_directories statement in this case.
     if ("${CMAKE_VERSION}" VERSION_LESS "2.8.11")
-        include_directories(${OpenRAVE_INCLUDE_DIRS})
+        include_directories(SYSTEM ${OpenRAVE_INCLUDE_DIRS})
     # The target_include_directories() command was introduced in CMake 2.8.11 and
     # is the preferred method of creating a scoped include directory in future
     # versions.
     else ()
-        target_include_directories("${target_name}" PRIVATE "${OpenRAVE_INCLUDE_DIRS}")
+        target_include_directories("${target_name}" SYSTEM
+            PRIVATE "${OpenRAVE_INCLUDE_DIRS}"
+        )
     endif ()
 
     install(TARGETS "${target_name}"
